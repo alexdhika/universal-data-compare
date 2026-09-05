@@ -1,0 +1,26 @@
+<odoo>
+
+    <record id="action_data_compare" model="ir.actions.act_window">
+        <field name="name">Data Compare</field>
+        <field name="res_model">data_compare</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_data_compare_config" model="ir.actions.act_window">
+        <field name="name">Data Compare Config</field>
+        <field name="res_model">data_compare_config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Data Compare" id="menu_universal_data_compare_root"
+              sequence="10000" web_icon="universal_data_compare,static/description/icon.png"/>
+
+    <menuitem name="Compare" id="menu_data_compare"
+              parent="menu_universal_data_compare_root" action="action_data_compare"
+              sequence="11"/>
+
+    <menuitem name="Configuration" id="menu_data_compare_config"
+              parent="menu_universal_data_compare_root" action="action_data_compare_config"
+              sequence="12"/>
+
+</odoo>

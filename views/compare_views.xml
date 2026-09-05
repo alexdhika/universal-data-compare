@@ -1,0 +1,81 @@
+<odoo>
+
+    <record id="view_data_compare_tree" model="ir.ui.view">
+        <field name="name">data_compare.tree</field>
+        <field name="model">data_compare</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="write_date"/>
+                <field name="config_id"/>
+                <field name="config_model"/>
+                <field name="excel_file_name"/>
+                <field name="line_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_data_compare_form" model="ir.ui.view">
+        <field name="name">data_compare.form</field>
+        <field name="model">data_compare</field>
+        <field name="arch" type="xml">
+
+            <form string="Data Compare">
+                <sheet>
+
+                    <group>
+                        <field name="config_id" options="{'no_create': True}" string="Tabel"/>
+                        <field name="unpivot"/>
+                        <field name="excel_file"
+                               filename="excel_file_name"
+                               widget="binary"
+                               options="{'accepted_file_extensions': '.xls,.xlsx'}"/>
+                        <field name="excel_file_name" invisible="1" force_save="1"/>
+                        <field name="unchecked_columns" readonly="1"/>
+                    </group>
+
+                    <button name="action_check"
+                            string="Cek Data"
+                            type="object"
+                            class="btn-primary"/>
+
+                    <div class="d-flex align-items-center mb-2">
+                        <separator string="Result : "/>
+                        <field name="line_count" readonly="1"
+                            class="oe_inline"
+                            style="margin-left:10px; font-weight:bold; margin-top:10px;"/>
+                    </div>
+                    <field name="line_ids" readonly="1">
+                        <tree>
+                            <field name="primary_excel_value"/>
+                            <field name="informational_excel_value"/>
+                            <field name="unpivot_value" attrs="{'column_invisible': [('parent.unpivot', '=', False)]}"/>
+                            <field name="field_name"/>
+                            <field name="excel_value"/>
+                            <field name="odoo_value"/>
+                            <field name="status"
+                                decoration-success="status == 'match'"
+                                decoration-danger="status == 'mismatch'"
+                                decoration-warning="status == 'not_found'"/>
+                        </tree>
+                    </field>
+
+                
+                <center>
+                    <button name="action_clear_result"
+                            string="Clear Result"
+                            type="object"
+                            class="btn-danger"
+                            confirm="Yakin ingin menghapus semua result?"/>
+                </center>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

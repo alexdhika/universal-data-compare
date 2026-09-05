@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_data_compare_user,data_compare,model_data_compare,base.group_user,1,1,1,1
+access_data_compare_line_user,data_compare_line,model_data_compare_line,base.group_user,1,1,1,1
+access_data_compare_config_user,data_compare_config,model_data_compare_config,base.group_user,1,1,1,1
+access_data_compare_config_field_mapping_user,data_compare_config_field_mapping,model_data_compare_config_field_mapping,base.group_user,1,1,1,1
+

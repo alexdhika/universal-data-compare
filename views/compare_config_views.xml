@@ -1,0 +1,56 @@
+<odoo>
+
+    <record id="view_data_compare_config_tree" model="ir.ui.view">
+        <field name="name">data_compare_config.tree</field>
+        <field name="model">data_compare_config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model"/>
+                <field name="model_name" invisible="1"/>
+                <field name="primary_excel_column"/>
+                <field name="primary_key"/>
+                <field name="unpivot"/>
+                <field name="informational_excel_column"/>
+                <field name="field_mapping_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_data_compare_config_form" model="ir.ui.view">
+        <field name="name">data_compare_config.form</field>
+        <field name="model">data_compare_config</field>
+        <field name="arch" type="xml">
+            <form string="Data Compare Config">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="model" options="{'no_create': True}"/>
+                        <field name="model_name" invisible="1"/>
+                        <field name="filter_domain" widget="domain" options="{'model': 'model_name', 'in_dialog': True}"/>
+                        <field name="primary_excel_column"/>
+                        <field name="primary_key" options="{'no_create': True}"/>
+                        <field name="unpivot"/>
+                        <field name="unpivot_field" options="{'no_create': True}" attrs="{'invisible': [('unpivot', '=', False)], 'required': [('unpivot', '=', True)]}"/>
+                        <field name="informational_excel_column"/>
+                        <field name="rounding_tolerance"/>
+                        <field name="field_mapping_ids">
+                            <tree editable="bottom" limit="1000">
+                                <field name="excel_column"/>
+                                <field name="model_id" invisible="1"/>
+                                <field name="field_id" options="{'no_create': True}"/>
+                                <field name="unpivot_value" attrs="{'column_invisible': [('parent.unpivot', '=', False)], 'required': [('parent.unpivot', '=', True)]}"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>
